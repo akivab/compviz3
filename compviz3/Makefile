@@ -20,14 +20,14 @@ UTILSH = vision_utilities.h
 
 # Enter the names of your source files here. If you have header files as well,
 # then do not include them here (they will be autoincluded).
-P1SRC = p1.cpp
-P2SRC = p2.cpp
-P3SRC = p3.cpp
-P4SRC = p4.cpp
+P1SRC = p1.c
+P2SRC = p2.c
+P3SRC = p3.c
+P4SRC = p4.c
 
 # Edge Threshold for getting strong edges on all images. 
 # Change this.
-EDGE_THRESHOLD = 0
+EDGE_THRESHOLD = 100
 
 # Hough Threshold for getting consistent lines on the 
 # hough_simple images. Change this.
@@ -43,36 +43,36 @@ HOUGH_COMPLEX_THRESHOLD = 0
 # generated from running the 'test' target. If you generate any other files,
 # make sure this is correct. This list of files is deleted when 'make clean'
 # or 'make submit' are run (to prevent submitting all these files).
-OUTPUTS_TO_CLEAN = p11.pgm p12.pgm p13.pgm p21.pgm p22.pgm p23.pgm h21.pgm h22.pgm h23.pgm p31.pgm p32.pgm p33.pgm p41.pgm p42.pgm p43.pgm
+OUTPUTS_TO_CLEAN = p11.pgm p12.pgm p13.pgm p21.pgm p22.pgm p23.pgm h21.pgm h22.pgm h23.pgm p31.pgm p32.pgm p33.pgm p41.pgm p42.pgm p43.pgm *~
 
 # THE BUILD RULES (you shouldn't need to edit any of these)
 # 'make test' builds all 4 programs and then tests them.
 # You should check to see that the final output images are correct
 test: test1 test2 test3 test4
-	
+
 # 'make test1' tests only program 1
 test1: p1
-	p1 hough_simple_1.pgm p11.pgm
-	p1 hough_simple_2.pgm p12.pgm
-	p1 hough_complex_1.pgm p13.pgm
+	./p1 hough_simple_1.pgm p11.pgm
+	./p1 hough_simple_2.pgm p12.pgm
+	./p1 hough_complex_1.pgm p13.pgm
 
 # 'make test2' tests only program 2
 test2: p2
-	p2 p11.pgm $(EDGE_THRESHOLD) p21.pgm h21.pgm
-	p2 p12.pgm $(EDGE_THRESHOLD) p22.pgm h22.pgm
-	p2 p13.pgm $(EDGE_THRESHOLD) p23.pgm h23.pgm
+	./p2 p11.pgm $(EDGE_THRESHOLD) p21.pgm h21.pgm
+	./p2 p12.pgm $(EDGE_THRESHOLD) p22.pgm h22.pgm
+	./p2 p13.pgm $(EDGE_THRESHOLD) p23.pgm h23.pgm
 
 # 'make test3' tests only program 3
 test3: p3
-	p3 hough_simple_1.pgm h21.pgm $(HOUGH_SIMPLE_1_THRESHOLD) p31.pgm
-	p3 hough_simple_2.pgm h22.pgm $(HOUGH_SIMPLE_2_THRESHOLD) p32.pgm
-	p3 hough_complex_1.pgm h23.pgm $(HOUGH_COMPLEX_THRESHOLD) p33.pgm
+	./p3 hough_simple_1.pgm h21.pgm $(HOUGH_SIMPLE_1_THRESHOLD) p31.pgm
+	./p3 hough_simple_2.pgm h22.pgm $(HOUGH_SIMPLE_2_THRESHOLD) p32.pgm
+	./p3 hough_complex_1.pgm h23.pgm $(HOUGH_COMPLEX_THRESHOLD) p33.pgm
 
 # 'make test4' tests only program 4
 test4: p4
-	p4 hough_simple_1.pgm h21.pgm p21.pgm $(HOUGH_SIMPLE_THRESHOLD) p41.pgm
-	p4 hough_simple_2.pgm h22.pgm p22.pgm $(HOUGH_SIMPLE_THRESHOLD) p42.pgm
-	p4 hough_complex_1.pgm h23.pgm p23.pgm $(HOUGH_COMPLEX_THRESHOLD) p43.pgm
+	./p4 hough_simple_1.pgm h21.pgm p21.pgm $(HOUGH_SIMPLE_THRESHOLD) p41.pgm
+	./p4 hough_simple_2.pgm h22.pgm p22.pgm $(HOUGH_SIMPLE_THRESHOLD) p42.pgm
+	./p4 hough_complex_1.pgm h23.pgm p23.pgm $(HOUGH_COMPLEX_THRESHOLD) p43.pgm
 
 # 'make all' builds all 4 programs (but doesn't run them)
 all: p1 p2 p3 p4
@@ -107,7 +107,7 @@ extract: $(UNI).tar.gz
 	mkdir -p $(UNI)
 	tar -xvf $(UNI)-hw3.tar.gz -C $(UNI)/
 
-	
+
 # 'make clean' removes all output and temporary files
 clean:
 	-rm -f p1 p2 p3 p4 vision_utilities.o $(OUTPUTS_TO_CLEAN) core CORE
