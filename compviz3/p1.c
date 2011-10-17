@@ -8,7 +8,7 @@ int sobeldy[9] = {1, 2, 1, 0, 0, 0, -1, -2, -1};
 
 int main(int nargin, char** argv){
   if(nargin != 3){
-    printf("Usage: p1 <img> <output>");
+    printf("Usage: p1 <img> <output>\n");
     return -1;
   }
   

@@ -8,10 +8,10 @@ int setSize(Image *im, int rows, int columns) {
   im->columns=columns;
   im->data = (uchar *) malloc(rows * columns * sizeof(char));
   if(im->data == NULL) {
-       fprintf(stderr, "Insufficient memory for new image\n");
-        exit(1); 
-        } 
-
+    fprintf(stderr, "Insufficient memory for new image\n");
+    exit(1); 
+  } 
+  
   return 0;
 }
 

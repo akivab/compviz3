@@ -20,16 +20,16 @@ Image* getHoughTransform(Image* im, int w /*num columns*/, int h /*num rows*/){
   
   for(x = 0; x < w; x++)
     for(y = 0; y < h; y++)
-      if(VIZ(0.005) && getPixel(im, y, x) > 0){
-	for(t = -T_MAX/2; t < T_MAX/2; t++){
+      if(VIZ(0) && getPixel(im, y, x) > 0){
+	for(t = -T_MAX; t < 0; t++){
 	  _t = t;
 	  _t = - x* sin(_t / 180 * PI) + y * cos(_t / 180 * PI);
 	  
 	  p = (int) _t;
 	  
 	  if(p < P_MAX && p >= 0){
-	    counts[p / NBP][(t+T_MAX/2)/NBT]++;
-	    max = MAX(counts[p / NBP][(t+T_MAX/2)/NBT], max);
+	    counts[p / NBP][(t+T_MAX)/NBT]++;
+	    max = MAX(counts[p / NBP][(t+T_MAX)/NBT], max);
 	  }
 	}
       }
